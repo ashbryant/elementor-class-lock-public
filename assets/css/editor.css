@@ -1,0 +1,153 @@
+/**
+ * Elementor Class Lock — editor UI.
+ *
+ * @package ElementorClassLock
+ */
+
+.ecl-padlock {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	margin-inline-start: 4px;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.ecl-padlock:hover,
+.ecl-padlock:focus-visible {
+	outline: 1px solid currentColor;
+	outline-offset: 1px;
+}
+
+.ecl-padlock.is-locked {
+	color: #aaa;
+}
+
+.ecl-padlock.is-unlocked {
+	color: var(--e-a-color-accent, #93003a);
+}
+
+.ecl-padlock__svg {
+	display: block;
+}
+
+.ecl-padlock--inline {
+	position: static;
+	width: 20px;
+	height: 20px;
+	margin-inline-start: 6px;
+	vertical-align: middle;
+}
+
+.ecl-padlock--floating {
+	position: absolute;
+	inset-inline-end: 2px;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2;
+}
+
+/* Chips in Style → Classes (scoped to the editor panel / V2 wrapper). */
+#elementor-panel-inner .MuiChip-root,
+#elementor-panel-inner [class*="MuiChip-root"],
+#elementor-panel-inner [class*="Chip-root"],
+#elementor-panel .MuiChip-root,
+#elementor-panel [class*="MuiChip-root"],
+#elementor-panel [class*="Chip-root"],
+#elementor-editor-wrapper-v2 .MuiChip-root,
+#elementor-editor-wrapper-v2 [class*="MuiChip-root"],
+#elementor-editor-wrapper-v2 [class*="Chip-root"] {
+	position: relative;
+}
+
+#elementor-panel-inner .MuiChip-root .ecl-padlock--floating,
+#elementor-panel-inner [class*="Chip-root"] .ecl-padlock--floating,
+#elementor-panel .MuiChip-root .ecl-padlock--floating,
+#elementor-panel [class*="Chip-root"] .ecl-padlock--floating,
+#elementor-editor-wrapper-v2 .MuiChip-root .ecl-padlock--floating,
+#elementor-editor-wrapper-v2 [class*="Chip-root"] .ecl-padlock--floating {
+	inset-inline-end: -2px;
+	width: 22px;
+	height: 22px;
+}
+
+.ecl-tooltip {
+	position: absolute;
+	z-index: 100000;
+	max-width: 260px;
+	padding: 6px 10px;
+	border-radius: 999px;
+	background: rgba(20, 20, 20, 0.92);
+	color: #fff;
+	font-size: 12px;
+	line-height: 1.35;
+	pointer-events: none;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ecl-promote-bar {
+	padding: 8px 12px;
+	border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ecl-promote {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 32px;
+	padding: 0 12px;
+	border-radius: 4px;
+	border: 1px solid currentColor;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	cursor: pointer;
+}
+
+.ecl-promote:hover,
+.ecl-promote:focus-visible {
+	opacity: 0.85;
+}
+
+/* Class Manager (V4) list items. The padlock sits next to the overflow
+   menu button so it never occludes "More actions". Locked items get a
+   visual read-only treatment and their drag / rename affordances are
+   dimmed to make the lock state obvious. */
+.ecl-padlock--cm {
+	position: static;
+	flex: 0 0 auto;
+	width: 24px;
+	height: 24px;
+	margin-inline-start: 4px;
+}
+
+li.ecl-cm-item {
+	position: relative;
+}
+
+li.ecl-cm-locked .class-item-sortable-trigger,
+li.ecl-cm-locked .class-item-more-actions {
+	opacity: 0.4;
+	cursor: not-allowed !important;
+}
+
+li.ecl-cm-locked .class-item-sortable-trigger {
+	pointer-events: none;
+}
+
+li.ecl-cm-locked [contenteditable="true"] {
+	caret-color: transparent;
+}
+
+/* Style panel controls — dimmed and non-interactive when active chip is locked. */
+.ecl-controls-locked {
+	opacity: 0.4;
+	pointer-events: none;
+	user-select: none;
+}
